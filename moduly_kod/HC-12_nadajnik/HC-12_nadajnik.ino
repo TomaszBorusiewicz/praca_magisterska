@@ -1,9 +1,8 @@
 void setup() {
-  // Otwarcie portu do komunikacji
-  Serial.begin(9600);
+  Serial.begin(9600); // Inicjalizacja portu serialowego 
 }
  
 void loop() {
-  Serial.print("Hello, world?");
-  delay(2000);
+  Serial.print("Hello, world?"); // Wysyłanie w pętli wiadomości na port serialowy
+  delay(2000); // przerwa 2s pomiędzy każdą iteracją w pętli
 }

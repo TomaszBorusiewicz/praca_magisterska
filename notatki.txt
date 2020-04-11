@@ -1,0 +1,8 @@
+moduł LoRa:
+    - mikrokontroler adafruit Feather 32u4
+    - radio LoRa SX1272
+    - jest libka do arduino
+    - pobór mocy
+        - ~300uA during full sleep
+        - ~120mA peak during +20dBm
+        - ~40mA during active radio listening
