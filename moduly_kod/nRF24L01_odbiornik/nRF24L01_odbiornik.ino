@@ -11,7 +11,7 @@ const byte address[6] = "00001";
 void setup() {
   Serial.begin(9600); // Inicjalizacja interfejsu serialowego
   radio.begin(); // Inicjalizacja obiektu radia RF24
-  radio.openReadingPipe(0, address);  // Przypisane adresu przez który wysyłana będzie wiadomość
+  radio.openReadingPipe(0, address);  // Przypisane adresu przez który odbierana będzie wiadomość
   radio.setPALevel(RF24_PA_MIN); // Ograniczenie mocy nadajnika do minimum
   radio.startListening(); // Uruchomienie nasłuchiwania
 }

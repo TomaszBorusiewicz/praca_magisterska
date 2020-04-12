@@ -6,3 +6,9 @@ moduł LoRa:
         - ~300uA during full sleep
         - ~120mA peak during +20dBm
         - ~40mA during active radio listening
+
+
+Scenariusze testowe:
+1. Odpornośc na zakłócenia (strzelanie w odbiornik sygnałem zagłuszającym)
+2. Badanie jakości odbioru danych: np. owinąć nadajnik / odbiornik folią aluminiową ? Czymś innym?
+3. 
