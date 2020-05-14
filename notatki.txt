@@ -11,4 +11,4 @@ moduł LoRa:
 Scenariusze testowe:
 1. Odpornośc na zakłócenia (strzelanie w odbiornik sygnałem zagłuszającym)
 2. Badanie jakości odbioru danych: np. owinąć nadajnik / odbiornik folią aluminiową ? Czymś innym?
-3. 
+3. Badanie połączenia na różnych odległościach
