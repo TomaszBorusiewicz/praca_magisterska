@@ -1,8 +1,37 @@
+//#include <SPI.h>
+//#include <RH_RF95.h>
+//#define RFM95_CS 8 // Numer pinu CS
+//#define RFM95_RST 4 // Numer pinu RST
+//#define RFM95_INT 3 // Numer pinu INT
+//#define RF95_FREQ 434.0 // Określenie częstotliwości na której pracuje radio Lor
+//RH_RF95 rf95(RFM95_CS, RFM95_INT); // Inicjalizacja instancji klasy rf95
+//void setup()
+//{
+//  pinMode(RFM95_RST, OUTPUT); // Ustawienie pinu RST jako wyjściowy
+//  digitalWrite(RFM95_RST, HIGH); // Przypisane stanu wysokiego pinowi RST
+//  Serial.begin(9600); // Inicjalizacja komunikacji serialowej do Arduino mega 2560
+//}
+// 
+//void loop()
+//{
+//  if (rf95.available()) // Jeżeli interfejs radiowy jest dostępny
+//  {
+//    uint8_t buf[RH_RF95_MAX_MESSAGE_LEN]; // Utworzenie zmiennej na otrzymane dane
+//    uint8_t len = sizeof(buf); // Obliczenie długości zmiennej na dane
+//    if (rf95.recv(buf, &len)) // Jeżeli odbiornik otrzymał dane
+//    {
+//      Serial.println((char*)buf); // Wyślij dane do urządzenia Arduino mega 2560
+//    }
+//  }
+//}
+
 #include <SPI.h>
 #include <RH_RF95.h>
+
 #define RFM95_CS 8
 #define RFM95_RST 4
-#define RFM95_INT 3 
+#define RFM95_INT 3
+ 
 // Change to 434.0 or other frequency, must match RX's freq!
 #define RF95_FREQ 434.0
  
@@ -11,13 +40,13 @@ RH_RF95 rf95(RFM95_CS, RFM95_INT);
  
 // Blinky on receipt
 #define LED 13
- 
+
 void setup()
 {
   pinMode(LED, OUTPUT);
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
- 
+  Serial1.begin(9600);
   Serial.begin(9600);
   while (!Serial) {
     delay(1);
@@ -61,26 +90,15 @@ void loop()
     // Should be a message for us now
     uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
     uint8_t len = sizeof(buf);
- 
     if (rf95.recv(buf, &len))
     {
       digitalWrite(LED, HIGH);
       RH_RF95::printBuffer("Received: ", buf, len);
       Serial.print("Got: ");
       Serial.println((char*)buf);
+      Serial1.println((char*)buf);
       Serial.print("RSSI: ");
       Serial.println(rf95.lastRssi(), DEC);
- 
-//      // Send a reply
-//      uint8_t data[] = "And hello back to you";
-//      rf95.send(data, sizeof(data));
-//      rf95.waitPacketSent();
-//      Serial.println("Sent a reply");
-      digitalWrite(LED, LOW);
-    }
-    else
-    {
-      Serial.println("Receive failed");
     }
   }
 }

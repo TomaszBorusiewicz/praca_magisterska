@@ -1,25 +1,19 @@
-#include <SoftwareSerial.h>
-
-SoftwareSerial HC12(10, 11);
-
+#include "DHT.h"
+#define DHTPIN 2 // Pin do którego podpięty jest DHT22
+#define DHTTYPE DHT22 // Określenie typu czujnika DHT
+DHT dht(DHTPIN, DHTTYPE); // Inicjalizacja instancji klasy DHT z numerem portu Arduino oraz typem czujnika
 void setup() {
-    Serial.begin(9600); // Inicjalizacja portu serialowego
-    HC12.begin(9600);
+    Serial.begin(9600); // Inicjalizacja komunikacji serialowej
+    dht.begin(); // Inicjalizacja komunikacji z DHT22
 }
  
 void loop() {
-  //Serial.print("Hello, world?"); // Wysyłanie w pętli wiadomości na port serialowy
-  //delay(2000); // przerwa 2s pomiędzy każdą iteracją w pętli
-
-//  while (HC12.available()) {        // If HC-12 has data
-//      Serial.println(HC12.read()); // Send the data to Serial monitor
-//      Serial.println("HC12 Dostępny");
-//    }
-//  while (Serial.available()) {      // If Serial monitor has data
-    HC12.print("HC-12");      // Send that data to HC-12
-    Serial.print("HC-12");
-    delay(5000);
-//      Serial.println("Serial dostępny");
-//    }
-  
+  float t = dht.readTemperature(); // Zczytanie wartość temperatury z czujnika
+  if (not (isnan(t))){ // Jeżeli dane są poprawne
+    String t_string = String(t); // Konwersja zmiennej float na string
+    char data[6]; // Stworzenie zmiennej char
+    t_string.toCharArray(data, 6); // Przypisanie każdego znaku w zmiennej string to tablicy char
+    Serial.println(data); // Wysłanie danych do odbiornika HC-12
+  }
+  delay(6000); // Pauza na 10 min
 }

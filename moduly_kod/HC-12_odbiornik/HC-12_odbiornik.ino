@@ -18,15 +18,15 @@ void setup() {
 }
    
 void loop() {
-    if (Serial.available() > 0) { // Warunek jeśli port serialowy jest dostępny ( ==1 )
-      String input = Serial.readString(); // Przypisz zczytaną wartość z portu serialowego do zmiennej input
-      if (radio.available()) {
-        char text[32] = "";
-        radio.read(&text, sizeof(text));
-        Serial.println(text);
-      }
-      Serial.println(input); // wyślij wartość zmiennej input na port serialowy
-    }
+//    if (Serial.available() > 0) { // Warunek jeśli port serialowy jest dostępny ( ==1 )
+//      String input = Serial.readString(); // Przypisz zczytaną wartość z portu serialowego do zmiennej input
+//      if (radio.available()) {
+//        char text[32] = "";
+//        radio.read(&text, sizeof(text));
+//        Serial.println(text);
+//      }
+//      Serial.println(input); // wyślij wartość zmiennej input na port serialowy
+//    }
     //else {
     //  Serial.println("Nie udało się");
     //}
@@ -46,4 +46,7 @@ void loop() {
 //    delay(2000);
 //      Serial.println("Serial dostępny");
 //    }
+  if (Serial.available()){
+  Serial.println(Serial.read());
+  }
 }
