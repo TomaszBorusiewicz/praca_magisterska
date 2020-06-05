@@ -27,14 +27,16 @@ void loop() {
       Serial.println("LoRa: " + LORA_output); // Wypisz wartośc na porcie serialowym
     }
   }
-  if (radio.available() > 0) { // Jeżeli interfejs nRF24L01 jest dostępny
-    char data[6]; // Utworzenie zmiennej do której zapisywane są dane z nRF24L01
-    radio.read(&data, sizeof(data));// Zczytanie danych przesłanych od nadajnika nRF24L01
-    String NRF24L01_output = String(data);
-    if (NRF24L01_output.length() > 0){ // Jeżeli długość stringa jest większa niż 0
-      Serial.println("NRF24L01: " + NRF24L01_output); // Wypisz wartośc na porcie serialowym
+  if (Serial.available() > 0) { // Jeżeli interfejs nRF24L01 jest dostępny
+//    char data[6]; // Utworzenie zmiennej do której zapisywane są dane z nRF24L01
+//    radio.read(&data, sizeof(data));// Zczytanie danych przesłanych od nadajnika nRF24L01
+//    String NRF24L01_output = String(data);
+//    if (NRF24L01_output.length() > 0){ // Jeżeli długość stringa jest większa niż 0
+//      Serial.println("NRF24L01: " + NRF24L01_output); // Wypisz wartośc na porcie serialowym
+     Serial.println(Serial.readString());
+//     delay(6000);
     }
-  }
+//  }
  if (Serial2.available() > 0){ // Jeżeli interfejs Xbee jest dostępny
    String Xbee_output = Serial2.readString(); // Zczytanie danych przesłanych od nadajnika Xbee
    if (Xbee_output.length() > 0){ // Jeżeli długość stringa jest większa niż 0
