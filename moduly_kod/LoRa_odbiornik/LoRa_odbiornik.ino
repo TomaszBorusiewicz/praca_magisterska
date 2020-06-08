@@ -48,9 +48,7 @@ void setup()
   digitalWrite(RFM95_RST, HIGH);
   Serial1.begin(9600);
   Serial.begin(9600);
-  while (!Serial) {
-    delay(1);
-  }
+
   delay(100);
  
   Serial.println("Feather LoRa RX Test!");
@@ -99,6 +97,8 @@ void loop()
       Serial1.println((char*)buf);
       Serial.print("RSSI: ");
       Serial.println(rf95.lastRssi(), DEC);
+      delay(1000);
+      digitalWrite(LED, LOW);
     }
   }
 }

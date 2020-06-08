@@ -13,12 +13,16 @@ void setup() {
   radio.openReadingPipe(0, address);  // Przypisane adresu przez który odbierana będzie wiadomość
   radio.setPALevel(RF24_PA_MIN); // Ograniczenie mocy nadajnika do minimum
   radio.startListening(); // Uruchomienie nasłuchiwania
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 void loop() {
   if (Serial3.available() > 0) { // Jeżeli interfejs HC12 jest dostępny
     String HC12_output = Serial3.readString(); // Zczytanie danych przesłanych od nadajnika HC-12
     if (HC12_output.length() > 0){
       Serial.println("HC-12: " + HC12_output);
+      digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+      delay(1000);                       // wait for a second
+      digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
     }
   }
   if (Serial1.available() > 0) { // Jeżeli interfejs LoRa jest dostępny
