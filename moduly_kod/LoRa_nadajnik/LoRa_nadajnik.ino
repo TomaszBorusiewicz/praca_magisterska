@@ -31,23 +31,24 @@ void setup()
     while (1);
   }
   Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
-  rf95.setTxPower(5, false);
+  rf95.setTxPower(23, false);
 }
 void loop()
 {
-  float t = dht.readTemperature(); // Pobranie wartości temperatury z czujnika DHT22
-  if (not (isnan(t))){ // Jeżeli wartośc jest poprawna
-    delay(1000);
-    Serial.println("Transmitting...");
-    String t_string = String(t); // Konwersja zmiennej typu float na String
-    Serial.println(t_string); // Wyświetlenie temperatury na interfejsie serialowym
-    char data[6]; // Tablica typu char do wysłania danych przez interfejs radiowy
-    t_string.toCharArray(data, 6); // Przypisanie każdego znaku zmiennej string do osobnej komórki w tablicy char
+//  float t = dht.readTemperature(); // Pobranie wartości temperatury z czujnika DHT22
+//  if (not (isnan(t))){ // Jeżeli wartośc jest poprawna
+//    delay(1000);
+//    Serial.println("Transmitting...");
+//    String t_string = String(t); // Konwersja zmiennej typu float na String
+//    Serial.println(t_string); // Wyświetlenie temperatury na interfejsie serialowym
+    char data[10] = "Hello"; // Tablica typu char do wysłania danych przez interfejs radiowy
+//    t_string.toCharArray(data, 6); // Przypisanie każdego znaku zmiennej string do osobnej komórki w tablicy char
     delay(10);
-    rf95.send((uint8_t *)data, 6); // Wysłanie danych przez interfejs radiowy LoRa
+    rf95.send((uint8_t *)data, 10); // Wysłanie danych przez interfejs radiowy LoRa
     Serial.println("Waiting for packet to complete..."); 
     delay(10);
     rf95.waitPacketSent(); // Weryfikacja poprawnego wysłania danych
-  }
- delay(6000); // delay 10 minutowy
+    delay(2000);
+//  }
+// delay(6000); // delay 10 minutowy
 }

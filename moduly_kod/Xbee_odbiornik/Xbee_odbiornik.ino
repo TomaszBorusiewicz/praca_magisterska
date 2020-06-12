@@ -7,10 +7,11 @@ void setup() {
 void loop() {
    if (Serial1.available() > 0){ // Jeżeli interfejs serialowy jest dostępny
      String data = Serial1.readString(); // Zczytaj dane otrzymane od nadajnik
-     Serial1.println(data); // Wyślij dane do Arduino mega 2560
-     Serial.println(data); // Wyślij dane do Arduino mega 2560
+//     Serial1.println(data); // Wyślij dane do Arduino mega 2560
+     Serial.println(data);
      digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-     delay(1000);                       // wait for a second
+     delay(500);                       // wait for a second
      digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+     delay(500);
    }
 }
